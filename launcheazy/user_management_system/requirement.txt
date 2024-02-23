@@ -1,0 +1,6 @@
+django
+django-cors-headers
+djangorestframework
+django-db-connection-pool[mysql]
+mysqlclient
+PyJWT==1.7.1
