@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'user_management_system.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
+        'NAME': 'user_management_system',
         'HOST': '127.0.0.1',
         'PORT':  3306,
         'USER': 'root',
@@ -126,3 +126,44 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'file': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        },
+        'console': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        }
+    },
+    'handlers': {
+        'file_user': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'user.log',
+            'maxBytes': 10485700, # 10.4857 MB (NEW)  # 020 MB
+            'backupCount': 2,
+            'formatter': 'file',
+            'delay': False
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'console'
+        }
+    },
+    'loggers': {
+        'django': {
+            'level': 'INFO',
+            'handlers': ['console'],
+            'propagate': True
+        },
+        'user': {
+            'level': 'INFO',
+            'handlers': ['file_user'],
+            'propagate': True,
+        }
+    }
+}
