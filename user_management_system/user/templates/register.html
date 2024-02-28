@@ -1,0 +1,52 @@
+{% extends "index.html" %} 
+{%load static %}
+{%block registerBlock %}
+<div class="d-flex justify-content-center">
+    <div class="col-lg-9 " >
+        <!-- <span>Manage Inventory Form</span>  -->
+        <div class="row d-flex justify-content-center mt-4" style="color: #234683; font-size: 30px; font-weight: 700">
+            User Registration
+        </div>
+        <div class="row">
+            <div class="col card bg-light mt-4 mr-3 mb-4">
+                <form method="POST" class="d-flex flex-column p-4" id="add-inventory-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="user_name">User Name:</label><br>
+                                <input type="text" class="from-control col-lg-6 mt-2 p-2" id="user_name" placeholder="Jhon Doe" style="width:95%;height:40px">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="organization"> Select Organization:</label><br>
+                                <select name="organization" id="organization" style="width:95%;height:40px" class="mt-2 p-2">
+                                    <option selected disabled >Select Organization</option>
+                                </select><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="email">Email:</label><br>
+                                <input type="email" class="from-control col-lg-6 mt-2 p-2" id="email" placeholder="example@gmail.com" style="width:95%;height:40px">
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="d-flex justify-content-center">
+                            <button type="submit" style="background-color:rgb(100, 189, 192); color:white; width:20%"
+                                id="#submitButton" class="btn mt-4">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <p class="text-info " style="text-decoration: none;" > <a href="{% url 'register' %}"> Register Organization </a></p>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock registerBlock %}

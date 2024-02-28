@@ -14,7 +14,7 @@ class Organization(models.Model):
 class Role(models.Model):
     role_id = models.BigAutoField(primary_key=True, unique=True)
     role_name = models.CharField(max_length=255, blank=False, default='')
-    org_id = models.ForeignKey(Organization, related_name="organization", on_delete=models.CASCADE, null=True, default=None)
+    org = models.ForeignKey(Organization, related_name="organization", on_delete=models.CASCADE, null=True, default=None)
     created_on = models.DateTimeField(auto_now_add=True,null=True)
     updated_on = models.DateTimeField(auto_now=True,null=True)
 
@@ -27,8 +27,9 @@ class User(models.Model):
     username = models.CharField(max_length=255, blank=False,null=True)
     password = models.CharField(max_length=50)
     status = models.SmallIntegerField(default=0)
-    role_id = models.ForeignKey(Role, related_name="role", on_delete=models.CASCADE,null=True, default=None)
-    org_id = models.ForeignKey(Organization, related_name="organization2", on_delete=models.CASCADE, null=True, default=None)
+    is_admin = models.SmallIntegerField(default=0)
+    role = models.ForeignKey(Role, related_name="role", on_delete=models.CASCADE,null=True, default=None)
+    org = models.ForeignKey(Organization, related_name="organization2", on_delete=models.CASCADE, null=True, default=None)
     created_on = models.DateTimeField(auto_now_add=True,null=True)
     updated_on = models.DateTimeField(auto_now=True,null=True)
 

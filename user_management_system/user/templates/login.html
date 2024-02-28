@@ -1,0 +1,60 @@
+{% extends "index.html" %} {%load static %} {% block loginBlock %}
+
+<div class="row justify-content-center mt-5 mb-4" style="height: 75vh">
+  <div class="col-lg-6 d-flex flex-row">
+    <div
+      class="col-5 d-flex flex-column card-body justify-content-center align-items-center rounded shadow"
+      style="background-color: #f5f4f4; box-shadow: 0 0 1px 0.2"
+    >
+      <div class="">
+        <span style="color: #234683; font-size: 30px; font-weight: 700">
+          Login</span
+        >
+       
+      </div>
+      <div class="mt-4 col-md-6">
+        <form method="POST" id="login-form" class="mt-4">
+          {% if error_message %}
+          <div class="alert alert-success">{{ error_message }}</div>
+          {% endif %} {% csrf_token %}
+          <div class="form-group">
+            <label for="username" style="color: #234683">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="form-control form-floating mt-2"
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="mt-2" for="password" style="color: #234683"
+              >Password</label
+            >
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control form-floating mt-2"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <div class="mt-4">
+            <button type="submit" class="btn btn-primary btn-block col-md-12">
+              Login
+            </button>
+            <div class="d-flex justify-content-between">
+
+                <p class="text-info mt-2" style="text-decoration: none;" > <a href="{% url 'register' %}"> Sign Up? </a></p>
+                <!-- <p class="text-info mt-2"> <a href="{% url 'register' %}"> Organization Registration -> </a></p> -->
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock loginBlock %}
